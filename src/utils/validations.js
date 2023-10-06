@@ -28,7 +28,7 @@ const verifyFieldsTransaction = async (body) => {
 
         return { statusCode: null, mensagem: null }
     } catch ({ message }) {
-        console.error(message)
+        throw new Error(message)
     }
 }
 
@@ -40,7 +40,7 @@ const userExists = async (email) => {
 
         return false
     } catch ({ message }) {
-        console.error(message)
+        throw new Error(message)
     }
 }
 

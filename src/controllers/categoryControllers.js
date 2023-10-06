@@ -1,11 +1,9 @@
-const { getAllCategories, httpStatusCodes } = require('../utils')
-const { OK, INTERNAL_SERVER_ERROR } = httpStatusCodes
+const { getAllCategories } = require('../services')
+const { httpStatusCodes: { OK, INTERNAL_SERVER_ERROR } } = require('../utils')
 
-const listAllCategories = async (req, res) => {
+const listAllCategories = async (_, res) => {
     try {
-        const allCategories = await getAllCategories()
-
-        return res.status(OK).json(allCategories.rows)
+        return res.status(OK).json((await getAllCategories()).rows)
     } catch ({ message }) {
         return res.status(INTERNAL_SERVER_ERROR).json(message)
     }
